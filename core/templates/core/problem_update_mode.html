@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>{{ page_title }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+
+        .text{
+        border-style:solid;
+        border-width:1px;
+        border-color:green;
+        border-radius:4px;
+        padding:10px 30px 60px 30px;
+        width: 100%;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">SQL Judge</a> </div> <div class="collapse navbar-collapse" id="myNavbar"> <ul class="nav navbar-nav">
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Classes</a></li>
+                    <li><a href="#">Contests</a></li>
+                    <li><a href="#">Problems</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li style="background-color:red;border-radius:4px"><a href="#">Log out</a></li> </ul> </div> </div>
+    </nav>
+    
+    {% load crispy_forms_tags %}
+    <form method="post" enctype="multipart/form-data" action="{% url 'core:single_problem' problem_id %}"> 
+    {% csrf_token %} 
+    <div class="container">
+        <h1>
+            {{ form.title }}
+        </h1>
+    </div>
+    <div class="container"> {{ form.text }}  </div>
+
+    <div class="container">
+        <h1> {{ form.init_queries.label }} </h1>
+        {% if form.init_queries_status.value == 0 %}
+            <h3> &#10003; </h3>
+        {% elif form.init_queries_status.value == 1 %}
+            <h3>  &#10144; </h3>   
+        {% elif form.init_queries_status.value == -1 %}
+            <!-- pass --> 
+        {% else %} 
+            <h3> &#10007; </h3>
+            {{ form.init_queries_error_details }}
+        {% endif %}
+        
+        {{ form.init_queries_file }}
+        {{ form.init_queries }}
+
+    </div>
+
+    <div class="container">
+        <h1> {{ form.final_query.label }} </h1>
+        {% if form.final_query_status.value == 0 %}
+            <h3> &#10003; </h3>
+        {% elif form.final_query_status.value == 1 %}
+            <h3> &#10144; </h3>   
+        {% elif form.final_query_status.value == -1 %}
+        {% else %} 
+            <h3>  &#10007; </h3>
+            {{ form.final_query_error_details }}
+        {% endif %}
+        {{ form.final_query }} 
+    </div>
+    <div class="container"> 
+        <h1> {{ form.result.label }} </h1>
+        {{ form.result }}
+    </div>
+    <div class="container">
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+
+</body>
+</html>

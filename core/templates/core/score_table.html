@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'core/bootstrap.css' %}" rel="stylesheet">
+    <title>جدول امتیازات</title>
+    <style>
+         span{
+    color:#000000;
+    }
+
+    @-webkit-keyframes circle {
+    0%{
+    width: 1px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    height: 1px;
+    z-index: -1;
+    background: #eee;
+    border-radius: 100%;
+    }
+    100% {
+    background: #aaa;
+    height: 5000%;
+    width: 5000%;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 0;
+    }
+    }
+    nav.circle ul li.nav-item a:hover:after {
+    -webkit-animation: circle 0.5s ease-in forwards;
+    }
+    nav.circle ul li a {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    }
+    nav.circle ul li a:after
+    {
+    display: block;
+    position: absolute;
+    margin: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: '.';
+    color: yellow;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    background: transparent;
+    }
+    /* stroke */
+    nav.stroke ul li a,
+    nav.fill ul li a {
+    position: relative;
+    }
+    nav.stroke ul li a:after,
+    nav.fill ul li a:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0%;
+    content: '.';
+    color: transparent;
+    background: #aaa;
+    height: 1px;
+    }
+    nav.stroke ul li a:hover:after {
+    width: 100%;
+    }
+
+
+    </style>
+</head>
+<body style="font-family:A iranian Sans Regular;background-color:#FDFFFC">
+<nav class="navbar navbar-expand-lg circle" style="background-color:#FFB753;">
+    <button class="btn navbar-btn ml-4" style="background-color:#ED5567;color:white;">خروج</button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link mr-3 nav_bar_color"
+                   href="{% url 'core:create_problem' %}"><span>ایجاد سوال</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mr-3" href="{% url 'core:score_table' %}"><span>جدول امتیازات</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link mr-3" href="#"><span>داشبورد</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mr-3" href="{% url 'core:all_classes' %}"><span>کلاس ها</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mr-3" href="{% url 'core:all_contests' %}"><span>مسابقات</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mr-3" href="{% url 'core:all_problems' %}"><span>سوالات</span></a>
+            </li>
+            <li>
+                <a class="navbar-brand mr-4" href="{% url 'core:landing_page' %}"><strong>هیربد</strong></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="text-center d-inline-block" style="margin:5%;width: 90%;">
+    <div class="row">
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#0577D3;border:solid #E71D36">امتیاز کل
+        </div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#0577D3;border:solid #E71D36">امتیاز سوال ۶
+        </div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#0577D3;border:solid #E71D36">امتیاز سوال ۵
+        </div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#0577D3;border:solid #E71D36">امتیاز سوال ۴
+        </div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#0577D3;border:solid #E71D36">امتیاز سوال ۳
+        </div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#0577D3;border:solid #E71D36">امتیاز سوال ۲
+        </div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#0577D3;border:solid #E71D36">امتیاز سوال ۱
+        </div>
+        <div class="rounded m-1 p-2" style="width: 24%;background-color:#0577D3;border:solid #E71D36">نام</div>
+    </div>
+    <div class="row">
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز کل</div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز سوال ۶</div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز سوال ۵</div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز سوال ۴</div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز سوال ۳</div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز سوال ۲</div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز سوال ۱</div>
+        <div class="rounded m-1 p-2" style="width: 24%;background-color:#76DFD4;">نام</div>
+    </div>
+
+    <div class="row">
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز کل</div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز سوال ۶</div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز سوال ۵</div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز سوال ۴</div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز سوال ۳</div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز سوال ۲</div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز سوال ۱</div>
+        <div class="rounded m-1 p-2" style="width: 24%;background-color:#76DFD4;">نام</div>
+    </div>
+
+    <div class="row">
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز کل</div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز سوال ۶</div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز سوال ۵</div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز سوال ۴</div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز سوال ۳</div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز سوال ۲</div>
+        <div class="rounded m-1 p-2" style="width: 10%;background-color:#76DFD4;">امتیاز سوال ۱</div>
+        <div class="rounded m-1 p-2" style="width: 24%;background-color:#76DFD4;">نام</div>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>کلاس</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg text-light" style="background-color:#011627">
+    <a class="navbar-brand" href="{% url 'landing_page' %}">هیربد</a>
+    <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+            class="navbar-toggler"
+            data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <button class="btn navbar-btn ml-3" style="background-color:#E71D36;color:white">خروج</button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link mr-3" href="{% url 'core:create_problem' %}">ایجاد سوال</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mr-3" href="{% url 'core:score_table' %}">جدول امتیازات</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link mr-3" href="#">داشبورد</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mr-3" href="{% url 'core:all_classes' %}">کلاس ها</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mr-3" href="{% url 'core:all_contests' %}">مسابقات</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mr-3" href="{% url 'core:all_problems' %}">سوالات</a>
+            </li>
+            <li>
+                <a class="navbar-brand" href="{% url 'core:landing_page' %}">هیربد</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <<<<<<< HEAD
+    <title>Bootstrap Example</title>
+    =======
+    <title>{{ form.title.value }}</title>
+    >>>>>>> 1f70374340de54042021d8ab4e2c72066fe1ebd6
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <<<<<<< HEAD
+    <style>
+        .text {
+            border-style: solid;
+            border-width: 1px;
+            border-color: green;
+            border-radius: 4px;
+            padding: 10px 30px 60px 30px;
+            height:
+        }
+
+
+    </style>
+    =======
+    {% load static %}
+    <link href="{% static 'core/style.css' %}" rel=stylesheet type="text/css">
+    >>>>>>> 1f70374340de54042021d8ab4e2c72066fe1ebd6
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">SQL Judge</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Classes</a></li>
+                <li><a href="#">Contests</a></li>
+                <li><a href="#">Problems</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li style="background-color:red;border-radius:4px"><a href="#">Log out</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<<<<<<< HEAD
+<div class="container">
+    <h1>{{ problem_title }}</h1>
+</div>
+<div class="container">
+    <p class="text">{{ problem_text }}</p>
+</div>
+<div class="container">
+    <p>Default file:</p>
+    <input type="file" id="myFile" name="filename2">
+
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</div>
+=======
+{% load crispy_forms_tags %}
+<div class="container">
+    <h1> {{ form.title.value }} </h1>
+</div>
+<div class="container">
+    {{ form.text|as_crispy_field }}
+</div>
+<div class="container">
+    <h2> Subproblems: </h2>
+</div>
+{% for form in subproblems_forms %}
+<div class="container">
+    <h1> {{ form.title }} </h1>
+    {{ form.text }}
+    <div hidden> {{ form.index }}</div>
+</div>
+{% endfor %}
+
+<form action=
+              "{% url 'core:submit_submission' problem_id %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <div class="container">
+        <p>Submission file:</p>
+        {{ submission_form.submission_file }}
+        <div class="mt-3">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </div>
+</form>
+
+
+>>>>>>> 1f70374340de54042021d8ab4e2c72066fe1ebd6
+</body>
+</html>

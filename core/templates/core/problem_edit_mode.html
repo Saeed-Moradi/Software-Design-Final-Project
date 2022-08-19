@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>{{ page_title }}</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    {% load static %}
+    <link href="{% static 'core/style.css' %}" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type="button">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">SQL Judge</a></div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Classes</a></li>
+                <li><a href="#">Contests</a></li>
+                <li><a href="#">Problems</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li style="background-color:red;border-radius:4px"><a href="#">Log out</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% load crispy_forms_tags %}
+<form action=
+              "{% url 'core:problem_edit_mode' problem_id %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <div class="container">
+        <h1>
+            {{ form.title }}
+        </h1>
+    </div>
+    <div class="container"> {{ form.text }}</div>
+
+    <div class="container">
+        <h2> {{ form.init_queries.label }} </h2>
+        {% if form.init_queries_status.value == 0 %}
+        <h3> &#10003; </h3>
+        {% elif form.init_queries_status.value == 1 %}
+        <h3> &#10144; </h3>
+        {% elif form.init_queries_status.value == -1 %}
+        <!-- pass -->
+        {% else %}
+        <h3> &#10007; </h3>
+        {{ form.init_queries_error_details }}
+        {% endif %}
+        {{ form.init_queries_file }}
+        {{ form.init_queries }}
+    </div>
+    {% for form in subproblems_forms %}
+    <div class="container">
+        <h1> {{ form.title }} </h1>
+        {{ form.text }}
+        <h2> {{ form.dump_queries.label }} </h2>
+        {% if form.dump_queries_status.value == 0 %}
+        <h3> &#10003; </h3>
+        {% elif form.dump_queries_status.value == 1 %}
+        <h3> &#10144; </h3>
+        {% elif form.dump_queries_status.value == -1 %}
+        <!-- pass -->
+        {% else %}
+        <h3> &#10007; </h3>
+        {{ form.dump_queries_error_details }}
+        {% endif %}
+        {{ form.dump_queries }}
+
+        <h2> {{ form.final_query.label }} </h2>
+        {% if form.final_query_status.value == 0 %}
+        <h3> &#10003; </h3>
+        {% elif form.final_querystatus.value == 1 %}
+        <h3> &#10144; </h3>
+        {% elif form.final_query_status.value == -1 %}
+        <!-- pass -->
+        {% else %}
+        <h3> &#10007; </h3>
+        {{ form.final_query_error_details }}
+        {% endif %}
+        {{ form.final_query }}
+        {{ form.result }}
+        <!--> {{ form.result_output }} <!-->
+        <div hidden> {{ form.index }}</div>
+    </div>
+    {% endfor %}
+    <div class="container">
+        <div class="mt-3">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </div>
+</form>
+<form action="{% url 'core:add_subproblem' problem_id %}" method="post">
+    {% csrf_token %}
+    <center>
+        <input src='{% static "core/images/plus.png" %}' type="image"/>
+    </center>
+</form>
+
+</body>
+</html>

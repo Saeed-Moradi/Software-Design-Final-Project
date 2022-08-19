@@ -1,0 +1,35 @@
+[
+    {
+        "title": "problem #1",
+        "text": "find x",
+        "problem_setter_id": -1,
+        "init_queries_status": -1,
+        "init_queris": ["crate table test1(id int, name varchar(20));", "insert into test1(id, name) values (1, 'ali');"],
+        "init_queries_error_details": "",
+        "final_query_status": -1,
+        "final_query": "select * form test1;",
+        "final_query_error_details": ""
+    }, 
+    {
+        "title": "problem #2",
+        "text": "find y",
+        "problem_setter_id": -1,
+        "init_queries_status": -1,
+        "init_queris": ["crate table test2(id int, name varhar(20));", "insert into test2(id, name) values (1, 'ali');"],
+        "init_queries_error_details": "",
+        "final_query_status": -1,
+        "final_query": "select * form test2;",
+        "final_query_error_details": ""
+    },
+    {
+        "title": "problem #3",
+        "text": "find z",
+        "problem_setter_id": -1,
+        "init_queries_status": -1,
+        "init_queris": ["crate table test3(id int, name varchar(20));", "insert into test3(id, name) values (1, 'ali');"],
+        "init_queries_error_details": "",
+        "final_query_status": -1,
+        "final_query": "select * form test;",
+        "final_query_error_details": ""
+    }
+]
